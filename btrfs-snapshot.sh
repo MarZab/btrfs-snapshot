@@ -89,10 +89,10 @@ fi
 shopt -s nullglob
 
 # Create snapshot root if necessary
-snap_root="$filesystem/.snapshot"
+snap_root="/mnt/btrfs/snapshots`realpath $filesystem`"
 if ! [ -d "$snap_root" ]; then
     echo -e "Creating snapshot root: $snap_root"
-    mkdir "$snap_root"
+    mkdir -p "$snap_root"
     if [ $? -ne 0 ]; then
         echo -e "Creating snapshot root failed!" >&2
         exit 1
